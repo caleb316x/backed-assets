@@ -2,7 +2,6 @@ import requests
 import json
 from tabulate import tabulate
 import time
-import webbrowser
 from dotenv import load_dotenv
 import os
 
@@ -25,11 +24,6 @@ class Bot:
         self.asset_count = 0
         self.last_page = self.start_page
 
-        self.collections = [
-            # 'chessunivers'
-            # 'uplandislive'
-        ]
-
         self.order = os.getenv("order")
 
         self.params = {
@@ -47,11 +41,9 @@ class Bot:
 
     def getName(self, asset):
         try:
-            # Try to get the name from asset["data"]["name"]
             return asset["data"]["name"]
         except KeyError:
             try:
-                # Fallback to asset["template"]['immutable_data']['name']
                 return asset["name"]
             except KeyError:
                 return " ***** no name *****"
