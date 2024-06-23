@@ -3,28 +3,23 @@ import json
 from tabulate import tabulate
 import time
 from envCheck import load_and_validate_env
-
+import os
 
 class Bot:
 
-    def __init__(self):
-        envdata = load_and_validate_env('.env')
-        
-        self.chain = envdata.get("chain")
+    def __init__(self):   
+        self.chain = os.getenv("chain")
         self.url = "https://"+self.chain+".api.atomicassets.io/atomicmarket/v2/sales"
-
-        self.max_page = envdata.get("max_page")
-        self.start_page = envdata.get("start_page")
+        self.max_page = int(os.getenv("max_page"))
+        self.start_page = int(os.getenv("start_page"))
         self.sleep = 1
         self.backed_count = 0
-        self.asset_per_page = envdata.get("asset_per_page")
-
+        self.asset_per_page = int(os.getenv("asset_per_page"))
         self.page_count = 0
         self.asset_count = 0
         self.last_page = self.start_page
-
-        self.order = envdata.get("order")
-        self.collections = envdata.get("collections")
+        self.order = os.getenv("order")
+        self.collections = os.getenv("collections")
 
         self.params = {
             'page': 1,
@@ -129,8 +124,10 @@ class Bot:
 
 
 if __name__ == "__main__":
-    bot = Bot()
-    bot.getAssets()
+    envdata = load_and_validate_env('.env')
+    if(envdata):
+        bot = Bot()
+        bot.getAssets()
 
 # https://eos.atomichub.io/market/sale/eos-mainnet/sale_id_here
 # https://eos.atomichub.io/explorer/asset/eos-mainnet/asset_id_here

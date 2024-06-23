@@ -16,14 +16,5 @@ def load_and_validate_env(env_path='.env'):
         if missing_vars:
             print(f"Missing required environment variables: {', '.join(missing_vars)}")
             return False
-        else:
-            print("All required environment variables are present.")
-    
-    return { 
-            'chain': os.getenv("chain"),
-            'collections': os.getenv("collections"),
-            'start_page':  int(os.getenv("start_page")),
-            'max_page': int(os.getenv("max_page")),
-            'asset_per_page':  int(os.getenv("asset_per_page")),
-            'order': os.getenv("order")
-            }
+        
+    return True
