@@ -2,30 +2,29 @@ import requests
 import json
 from tabulate import tabulate
 import time
-from dotenv import load_dotenv
-import os
-
+from envCheck import load_and_validate_env
 
 
 class Bot:
 
     def __init__(self):
-        load_dotenv()
-        self.chain = os.getenv("chain")
+        envdata = load_and_validate_env('.env')
+        
+        self.chain = envdata.get("chain")
         self.url = "https://"+self.chain+".api.atomicassets.io/atomicmarket/v2/sales"
 
-        self.max_page = int(os.getenv("max_page"))
-        self.start_page = int(os.getenv("start_page"))
+        self.max_page = envdata.get("max_page")
+        self.start_page = envdata.get("start_page")
         self.sleep = 1
         self.backed_count = 0
-        self.asset_per_page = int(os.getenv("asset_per_page"))
+        self.asset_per_page = envdata.get("asset_per_page")
 
         self.page_count = 0
         self.asset_count = 0
         self.last_page = self.start_page
 
-        self.order = os.getenv("order")
-        self.collections = os.getenv("collections")
+        self.order = envdata.get("order")
+        self.collections = envdata.get("collections")
 
         self.params = {
             'page': 1,
@@ -105,6 +104,7 @@ class Bot:
             return False
 
     def getAssets(self):
+        print("Chain: "+self.chain)
         for p in range(self.start_page, self.max_page + 1):
             res = self.search_assets(p)
             time.sleep(self.sleep)
