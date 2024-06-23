@@ -32,7 +32,7 @@ class Bot:
             'order': self.order,
             'sort': 'created',
             'state': 1,
-            'collection_name': ",".join(self.collections),
+            'collection_name': ",".join(os.getenv("collections")),
         }
 
         self.rows = []
