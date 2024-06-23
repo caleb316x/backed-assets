@@ -25,6 +25,7 @@ class Bot:
         self.last_page = self.start_page
 
         self.order = os.getenv("order")
+        self.collections = os.getenv("collections")
 
         self.params = {
             'page': 1,
@@ -32,7 +33,7 @@ class Bot:
             'order': self.order,
             'sort': 'created',
             'state': 1,
-            'collection_name': ",".join(os.getenv("collections")),
+            'collection_name': ",".join(self.collections),
         }
 
         self.rows = []
