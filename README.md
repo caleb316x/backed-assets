@@ -42,3 +42,7 @@ Backed Assets is a Python-based bot designed to search, filter, and analyze asse
 |---------|---------------------|---------------|-------|--------|---------|--------|-----|
 | 1234567 | Chess Piece Knight  | chessunivers  | 10.5  | 11.0   | 10.8    | 12.0   | ✅  |
 
+## Link
+  
+  - https://eos.atomichub.io/market/sale/eos-mainnet/{sale_id_here}
+  - https://eos.atomichub.io/explorer/asset/eos-mainnet/{asset_id_here}

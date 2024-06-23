@@ -128,6 +128,3 @@ if __name__ == "__main__":
     if(envdata):
         bot = Bot()
         bot.getAssets()
-
-# https://eos.atomichub.io/market/sale/eos-mainnet/sale_id_here
-# https://eos.atomichub.io/explorer/asset/eos-mainnet/asset_id_here
